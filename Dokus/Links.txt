@@ -1,0 +1,27 @@
+https://micrometer.io/docs/concepts
+https://docs.spring-boot-admin.com/current/getting-started.html
+https://docs.spring.io/spring-boot/docs/2.0.x/actuator-api/html/
+https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
+https://tanzu.vmware.com/developer/guides/observability-reactive-spring-boot-3/
+https://github.com/Netflix/atlas/wiki/Getting-Started
+https://github.com/Netflix/atlas/wiki/Stack-Language
+https://www.baeldung.com/micrometer
+http://localhost:7101/api/v1/graph?e=2023-06-15T00:00&q=name,personen.all,:eq&s=e-2d
+http://localhost:7101/api/v1/graph?e=2023-06-15T00:00&q=name,personen,:eq&s=e-2d
+https://netflix.github.io/atlas-docs/api/graph/basics/
+https://github.com/DataDog/datadog-agent/tree/main/Dockerfiles/agent
+docker run -d --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=877dcf043e998fdef95acfdd64848159 -e DD_SITE="datadoghq.eu" gcr.io/datadoghq/agent:7
+https://docs.datadoghq.com/agent/basic_agent_usage/windows/?tab=gui
+java -javaagent:dd-java-agent.jar -Ddd.logs.injection=true -jar C:\Users\JoachimWagner\git\Limago\spring-operartions\wepapp17\target\wepapp-0.0.1-SNAPSHOT.jar
+https://spring.io/blog/2022/10/12/observability-with-spring-boot-3
+https://neilwhite.ca/spring-boot-3-observeability/
+https://www.baeldung.com/spring-boot-self-hosted-monitoring
+https://github.com/blueswen/spring-boot-observability
+https://refactorfirst.com/distributed-tracing-with-opentelemetry-jaeger-in-spring-boot
+https://github.com/blueswen/spring-boot-observability/blob/main/readme.md
+https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/
+https://refactorfirst.com/distributed-tracing-with-opentelemetry-jaeger-in-spring-boot
+https://fossies.org/linux/grafana/devenv/docker/blocks/tempo/docker-compose.yaml
+https://grafana.com/blog/2022/04/26/set-up-and-observe-a-spring-boot-application-with-grafana-cloud-prometheus-and-opentelemetry/
+
+
