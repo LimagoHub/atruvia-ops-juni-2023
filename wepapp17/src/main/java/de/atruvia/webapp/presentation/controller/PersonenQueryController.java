@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/personen")
 @RequiredArgsConstructor
-
+@Log4j2
 public class PersonenQueryController {
 
     private final PersonenService service;
@@ -47,9 +49,9 @@ public class PersonenQueryController {
     public ResponseEntity<Iterable<PersonDto>> findeAlle(
             @RequestParam(required = false, defaultValue = "") String vorname,
             @RequestParam(required = false, defaultValue = "") String nachname) throws PersonenServiceException{
-        System.out.println(String.format("Vorname = %s, nachname = %s", vorname, nachname));
+        //System.out.println(String.format("Vorname = %s, nachname = %s", vorname, nachname));
 
-
+        log.info(String.format("Vorname = %s, nachname = %s", vorname, nachname));
         return ResponseEntity.ok(mapper.convert(service.findeAlle()));
     }
 

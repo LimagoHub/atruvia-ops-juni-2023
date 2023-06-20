@@ -19,7 +19,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/v1/personen")
 @RequiredArgsConstructor
-
 public class PersonenCommandController {
 
 

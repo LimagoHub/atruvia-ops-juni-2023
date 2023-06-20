@@ -1,20 +1,23 @@
 package de.atruvia.webapp.service.internal;
 
-import de.atruvia.webapp.aspects.Dozent;
-import de.atruvia.webapp.persistence.repository.PersonenRepository;
-import de.atruvia.webapp.service.BlacklistService;
-import de.atruvia.webapp.service.PersonenService;
-import de.atruvia.webapp.service.PersonenServiceException;
-import de.atruvia.webapp.service.mapper.PersonMapper;
-import de.atruvia.webapp.service.model.Person;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import de.atruvia.webapp.aspects.Dozent;
+import de.atruvia.webapp.persistence.repository.PersonenRepository;
+import de.atruvia.webapp.service.PersonenService;
+import de.atruvia.webapp.service.PersonenServiceException;
+import de.atruvia.webapp.service.mapper.PersonMapper;
+import de.atruvia.webapp.service.model.Person;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Metrics;
+import lombok.RequiredArgsConstructor;
 
 @Dozent
 @Service
@@ -23,6 +26,9 @@ import java.util.Optional;
 
 
 public class PersonenServiceImpl implements PersonenService {
+    
+    private final Counter sympathenCounter = Metrics.counter("sympathen.counter");
+    private final Counter antipathenCounter = Metrics.counter("antipathen.counter");
 
 
     private final PersonenRepository repository;
@@ -44,6 +50,7 @@ public class PersonenServiceImpl implements PersonenService {
 
      */
     @Override
+    @Counted("anlegen.counter")
     public void anlegen(final Person person) throws PersonenServiceException {
         pruefenUndSpeichern(person, "Fehler beim Anlegen");
     }
@@ -59,8 +66,12 @@ public class PersonenServiceImpl implements PersonenService {
             if (person.getNachname() == null || person.getNachname().length() < 2)
                 throw new PersonenServiceException("Nachname zu kurz.");
 
-            if (antipathen.contains(person.getVorname()))
+            if (antipathen.contains(person.getVorname())) {
+                antipathenCounter.increment();
                 throw new PersonenServiceException("Unerwuenschte Person");
+            } else {
+                sympathenCounter.increment();
+            }
 
             repository.save(mapper.convert(person));
         } catch (RuntimeException e) {

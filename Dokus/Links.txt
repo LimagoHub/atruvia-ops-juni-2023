@@ -23,5 +23,17 @@ https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/
 https://refactorfirst.com/distributed-tracing-with-opentelemetry-jaeger-in-spring-boot
 https://fossies.org/linux/grafana/devenv/docker/blocks/tempo/docker-compose.yaml
 https://grafana.com/blog/2022/04/26/set-up-and-observe-a-spring-boot-application-with-grafana-cloud-prometheus-and-opentelemetry/
+[15:04] Yannick Retzlaff
 
+Kurzer Hinweis für das Aufsetzen in der Atruvia: 
+
+Es gibt eine relativ umfassende Beschreibung für das Monitoring und Alerting auf OpenShift seitens der Makroarchitektur:  
+
+https://confluence.rz.bankenit.de/confluence/pages/viewpage.action?pageId=298097000
+
+ like 1
+
+[15:06] Yannick Retzlaff
+
+https://confluence.rz.bankenit.de/confluence/x/aJnEEQ
 

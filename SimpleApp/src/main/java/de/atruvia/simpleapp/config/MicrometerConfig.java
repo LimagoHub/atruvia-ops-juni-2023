@@ -1,5 +1,6 @@
 package de.atruvia.simpleapp.config;
 
+import io.micrometer.core.aop.CountedAspect;
 import io.micrometer.core.aop.TimedAspect;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
@@ -18,6 +19,14 @@ public class MicrometerConfig {
         var timeAspect =  new TimedAspect(registry);
 
         return timeAspect;
+    }
+
+    @Bean
+    public CountedAspect countedAspect(MeterRegistry registry) {
+
+        var countAspect =  new CountedAspect(registry);
+
+        return countAspect;
     }
 
     @Bean

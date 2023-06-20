@@ -23,4 +23,7 @@ public interface PersonenRepository extends CrudRepository<PersonEntity, String>
 
     @Query("update PersonEntity p set p.vorname = :vorname where p.id = :id")
     void updateVorname(String id, String vorname);
+    
+    @Counted("personensave.counter")
+    <S extends PersonEntity> S save(S entity);
 }
